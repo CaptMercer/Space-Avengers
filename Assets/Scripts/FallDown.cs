@@ -24,4 +24,3 @@ public class FallDown : MonoBehaviour
 		}
 	}
 }
-//ssssss
