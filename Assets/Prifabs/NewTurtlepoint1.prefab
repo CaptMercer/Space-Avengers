@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 130826329127723959}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6, y: 3.28, z: -9.886719}
+  m_LocalPosition: {x: 6, y: 3.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4967770470659720027}
@@ -60,7 +60,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 150621588967155431}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12, y: 0, z: 0}
+  m_LocalPosition: {x: -4.8, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6927871588147567339}
@@ -96,7 +96,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1123836315413587814}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.06, y: -0.17000008, z: -0.056640625}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children:
   - {fileID: 8370220713154338129}
@@ -170,8 +170,12 @@ MonoBehaviour:
   Objects:
   - {fileID: 5037638585955700215}
   - {fileID: 7937943938324911078, guid: 62b60bc61da99e64ba7d94efce2faf28, type: 3}
+  - {fileID: 6784214085693885787, guid: e24a2a34e1b543d408095805be39f756, type: 3}
   Rand: 0
   speed: 1
+  death: 0
+  boss: 0
+  away: 0
   Point1: {fileID: 6927871588147567339}
   Point2: {fileID: 4967770470659720027}
   hp: 2

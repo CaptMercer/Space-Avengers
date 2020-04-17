@@ -4,47 +4,48 @@ using UnityEngine;
 
 public class N2LV : MonoBehaviour
 {
-	public bool win=false;
 	public GameObject[] Objects;
+	public bool turels=false;
+	public Transform Point1,Point2;
     void Start()
     {
 		Player.LVNomber=2;
         StartCoroutine(Spawn1());
-        StartCoroutine(Spawn2());
-        StartCoroutine(Spawn3());
 		
     }
 		  void Update()
     { 
-	if(Player.SCORE==50)
+		Player.gametime+=1*Time.deltaTime;
+		if(Player.gametime > 25f && turels==false)
 		{
-			win=true;
-		Player.matrix[4]=3;
-		Objects[3].SetActive(true);
+			turels=true;
+			StartCoroutine(Spawn2());
+		}
+	if(Player.gametime > 50f && !Player.lose)
+		{
+			 Player.win=true;
+			Objects[2].SetActive(true);
+			Objects[3].SetActive(true);
+			if(Player.campaign<=2)
+			{
+		PlayerPrefs.SetInt("campaign",3);
+		}
 		}
 	}
-	IEnumerator Spawn1()
+	    IEnumerator Spawn1()//спаун метеоров
     {
-        while (!Player.lose&&win==false)//спаун голды
+        while (!Player.lose&& Player.win==false)
         {
-            Instantiate(Objects[0],new Vector2(Random.Range(-6.1f, 6f), 5.9f), Quaternion.identity);
-            yield return new WaitForSeconds(0.8f);
+            Instantiate(Objects[0],new Vector2(Random.Range(Point1.position.x , Point2.position.x),Point1.position.y), Quaternion.identity);
+            yield return new WaitForSeconds(1.5f);
         }
     }
-	    IEnumerator Spawn2()//спаун метеоров
+    IEnumerator Spawn2()//спаун турелей
     {
-        while (!Player.lose&&win==false)
+        while (!Player.lose&& Player.win==false)
         {
-            Instantiate(Objects[1],new Vector2(Random.Range(-6.1f, 6f), 5.9f), Quaternion.identity);
-            yield return new WaitForSeconds(0.8f);
-        }
-    }
-    IEnumerator Spawn3()//спаун турелей
-    {
-        while (!Player.lose&&win==false)
-        {
-			Instantiate(Objects[2],new Vector2(Random.Range(-6.1f, 6f), 3.28f), Quaternion.identity);
-            yield return new WaitForSeconds(3f);
+			Instantiate(Objects[1],new Vector2(Random.Range(Point1.position.x , Point2.position.x),Point1.position.y), Quaternion.identity);
+            yield return new WaitForSeconds(5f);
         }
     }
 }

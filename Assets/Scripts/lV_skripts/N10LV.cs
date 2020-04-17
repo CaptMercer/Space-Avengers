@@ -5,61 +5,53 @@ using UnityEngine;
 public class N10LV : MonoBehaviour
 {
 	public GameObject[] Objects;
-	public static bool win=false;
-		public bool BossFight=false;
+	public Transform Point1,Point2;
     void Start()
     {
 		Player.LVNomber=10;
         StartCoroutine(Spawn1());
 		StartCoroutine(Spawn2());
 		StartCoroutine(Spawn3());
-		StartCoroutine(Spawn4());
     }
-					    void Update()
-						{
-	if(Player.SCORE>200)
+	void Update()
+			{
+	Player.gametime+=1*Time.deltaTime;
+	if(Player.gametime > 50f && !Player.lose)
 		{
-			BossFight=true;
+			Player.BossFight=true;
 		}
-			if(win==true)
+			if(Player.win==true)
 		{
-		Player.matrix[4]=11;
+		PlayerPrefs.SetInt("campaign",11);
+		Objects[4].SetActive(true);
 		Objects[5].SetActive(true);
 		}
-						}
-    IEnumerator Spawn1()//спаун голды
+			}
+			IEnumerator Spawn1()//спаун пираней
     {
-        while ( !Player.lose&&BossFight==false)
+		        while (!Player.lose&&Player.BossFight==false)
         {
-            Instantiate(Objects[0],new Vector2(Random.Range(-6.1f, 6f), 5.9f), Quaternion.identity);
-            yield return new WaitForSeconds(0.8f);
-		}
-			if(BossFight==true)//босфайт
-		{
-		Objects[4].SetActive(true);
-		}
-    }
-			IEnumerator Spawn2()//спаун пираней
-    {
-		        while (!Player.lose&&BossFight==false)
-        {
-	          Instantiate(Objects[1],new Vector2(6f, 3.28f), Quaternion.identity);
+	          Instantiate(Objects[0],new Vector2(Point2.position.x,Point2.position.y), Quaternion.identity);
             yield return new WaitForSeconds(2f);
 		}
+		if(Player.BossFight==true)//босфайт
+		{
+		Objects[3].SetActive(true);
+		}
 	}
-	IEnumerator Spawn3()//спаун черепах
+	IEnumerator Spawn2()//спаун черепах
     {
-        while (!Player.lose&&BossFight==false)
+        while (!Player.lose&&Player.BossFight==false)
         {
-			Instantiate(Objects[2],new Vector2(6f, 3.28f), Quaternion.identity);
+			Instantiate(Objects[1],new Vector2(Point2.position.x,Point2.position.y), Quaternion.identity);
             yield return new WaitForSeconds(5f);
         }
     }
-		IEnumerator Spawn4()//спаун новых черепах
+		IEnumerator Spawn3()//спаун новых черепах
     {
-        while (!Player.lose&&BossFight==false)
+        while (!Player.lose&&Player.BossFight==false)
         {
-			Instantiate(Objects[3],new Vector2(6f, 3.28f), Quaternion.identity);
+			Instantiate(Objects[2],new Vector2(Point2.position.x,Point2.position.y), Quaternion.identity);
             yield return new WaitForSeconds(6f);
         }
     }

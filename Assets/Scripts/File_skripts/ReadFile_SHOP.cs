@@ -14,23 +14,21 @@ public class ReadFile_SHOP : MonoBehaviour
 	private Text Shield_Price_txt;
 	private Text Gold_txt;
 	private Text Armor_Price_txt;
+	public static int HIGHSCORE,life,shield,campaign,gold;
 	 void Awake()
     {
 		//текстовые компоненты
 		Gold_txt = GameObject.Find("Balance").GetComponent<Text>();
 		Shield_Price_txt = GameObject.Find("Shield_Price").GetComponent<Text>();
 		Armor_Price_txt = GameObject.Find("Armor_Price").GetComponent<Text>();
-		// перевод из файла в масив
-		 string[] lines = File.ReadAllLines("in.txt");
-		 for(int i =0;i<5;i++)
-		 {
-			 matrix[i]=Convert.ToInt32(lines[i]);
-		 }
+		shield=PlayerPrefs.GetInt("shield");
+		life=PlayerPrefs.GetInt("life");
+		gold=PlayerPrefs.GetInt("gold");
 	}
 	    void  Update()
     {
 		//установление цен и лимитов 
-		 switch ( matrix[1])
+		 switch (life)
       {
           case 1:
               armor_price=100;
@@ -45,7 +43,7 @@ public class ReadFile_SHOP : MonoBehaviour
 		 armor_up_aible=false;
 		      break;
       }
-			  switch ( matrix[0])
+			  switch (shield)
       {    case 0:
               shield_price=500;
               break;
@@ -54,7 +52,7 @@ public class ReadFile_SHOP : MonoBehaviour
               break;
 	  }
 	  //вывод цен и сообщений
-	  Gold_txt.text ="Gold:" +matrix[3].ToString();
+	  Gold_txt.text ="Gold:" +gold.ToString();
 	  if(armor_up_aible==true)
 	  {
 		 Armor_Price_txt.text ="price:" + armor_price.ToString(); 
@@ -71,12 +69,5 @@ public class ReadFile_SHOP : MonoBehaviour
 	  {
 		 Shield_Price_txt.text = "MAX";
 	  }
-	  //сохранение в фаил 
-	  		string[] lines=new string[5];
-			 for(int i =0;i<5;i++)
-		 {
-		lines[i] = Convert.ToString(matrix[i]);
-		 }
-		 File.WriteAllLines("in.txt",lines);
 	}
 }

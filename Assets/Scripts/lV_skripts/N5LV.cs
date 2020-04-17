@@ -5,46 +5,47 @@ using UnityEngine;
 public class N5LV : MonoBehaviour
 {
 		public GameObject[] Objects;
-		public static bool win=false;
+		public static bool pirahs=false;
+		public Transform Point1,Point2;
     void Start()
     {
 		Player.LVNomber=5;
         StartCoroutine(Spawn1());
-		StartCoroutine(Spawn2());
-		StartCoroutine(Spawn3());
+		StartCoroutine(Spawn2());;
     }
 			    void Update()
-    { 
-	if(Player.SCORE==50)
+				{
+  Player.gametime+=1*Time.deltaTime;
+		if(Player.gametime > 25f && pirahs==false)
 		{
-		win=true;
-		Player.matrix[4]=6;
-		Objects[3].SetActive(true);
+			pirahs=true;
+			StartCoroutine(Spawn2());
+		}
+	if(Player.gametime > 50f && !Player.lose)
+		{
+			 Player.win=true;
+			Objects[2].SetActive(true);
+			Objects[3].SetActive(true);
+			if(Player.campaign<=2)
+			{
+		PlayerPrefs.SetInt("campaign",3);
+		}
+		}
+		}
+			IEnumerator Spawn1()//спаун метеоров
+    {
+		        while (!!Player.lose&& Player.win==false)
+        {
+	          Instantiate(Objects[0],new Vector2(Random.Range(Point1.position.x , Point2.position.x),Point1.position.y), Quaternion.identity);
+            yield return new WaitForSeconds(0.8f);
 		}
 	}
-    IEnumerator Spawn1()//спаун голды
+	IEnumerator Spawn2()//спаун пираней
     {
-        while (!Player.lose&&win==false)
+        while (!Player.lose&& Player.win==false)
         {
-            Instantiate(Objects[0],new Vector2(Random.Range(-6.1f, 6f), 5.9f), Quaternion.identity);
-            yield return new WaitForSeconds(0.8f);
-        }
-    }
-			IEnumerator Spawn2()//спаун метеоров
-    {
-		        while (!!Player.lose&&win==false)
-        {
-	          Instantiate(Objects[1],new Vector2(6f, 3.28f), Quaternion.identity);
-            yield return new WaitForSeconds(0.8f);
-		}
-	}
-	IEnumerator Spawn3()//спаун пираней
-    {
-        while (!Player.lose&&win==false)
-        {
-			Instantiate(Objects[2],new Vector2(6f, 3.28f), Quaternion.identity);
+			Instantiate(Objects[1],new Vector2(Point2.position.x,Point2.position.y), Quaternion.identity);
             yield return new WaitForSeconds(3f);
         }
     }
-
 }

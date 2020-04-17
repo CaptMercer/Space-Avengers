@@ -8,14 +8,13 @@ public class armor_button : MonoBehaviour
 {
     void OnMouseDown()
     {
-		print("?="+ReadFile_SHOP.armor_up_aible);
 		if(ReadFile_SHOP.armor_up_aible==true)//проверка возможности обновить
 		{
-	if (ReadFile_SHOP.armor_price<=ReadFile_SHOP.matrix[3])//проверка наличия золота
+	if (ReadFile_SHOP.armor_price<=ReadFile_SHOP.gold)//проверка наличия золота
 	{
-		ReadFile_SHOP.matrix[3]=ReadFile_SHOP.matrix[3]-ReadFile_SHOP.armor_price;	
-	 ReadFile_SHOP.matrix[1]=ReadFile_SHOP.matrix[1]+1;
-		print("life="+ ReadFile_SHOP.matrix[1]);
+		ReadFile_SHOP.gold=ReadFile_SHOP.gold-ReadFile_SHOP.armor_price;	
+	 ReadFile_SHOP.life=ReadFile_SHOP.life+1;
+	 PlayerPrefs.SetInt("life",ReadFile_SHOP.life);
 	}
 	else
 	{

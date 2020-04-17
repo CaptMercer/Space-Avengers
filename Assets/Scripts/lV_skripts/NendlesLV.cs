@@ -18,9 +18,6 @@ public class NendlesLV : MonoBehaviour
     { 
 	if(Player.SCORE==50)
 		{
-		win=true;
-		Player.matrix[4]=10;
-		Objects[4].SetActive(true);
 		}
 	}
     IEnumerator Spawn1()//спаун голды

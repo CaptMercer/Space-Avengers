@@ -5,44 +5,37 @@ using UnityEngine;
 public class N7LV : MonoBehaviour
 {
 	public GameObject[] Objects;
-	public static bool win=false;
+	public Transform Point1,Point2;
     void Start()
     {
 		Player.LVNomber=7;
         StartCoroutine(Spawn1());
 		StartCoroutine(Spawn2());
-		StartCoroutine(Spawn3());
     }
 			    void Update()
     { 
-	if(Player.SCORE==50)
+	Player.gametime+=1*Time.deltaTime;
+	if( Player.gametime > 50f && !Player.lose)
 		{
-		win=true;
-		Player.matrix[4]=8;
+		Player.win=true;
+		PlayerPrefs.SetInt("campaign",8);
+		Objects[2].SetActive(true);
 		Objects[3].SetActive(true);
 		}
 	}
-    IEnumerator Spawn1()//спаун голды
+			IEnumerator Spawn1()//спаун пираней
     {
-        while (!Player.lose&&win==false)
+		        while (!Player.lose&&Player.win==false)
         {
-            Instantiate(Objects[0],new Vector2(Random.Range(-6.1f, 6f), 5.9f), Quaternion.identity);
-            yield return new WaitForSeconds(0.8f);
-        }
-    }
-			IEnumerator Spawn2()//спаун пираней
-    {
-		        while (!Player.lose&&win==false)
-        {
-	          Instantiate(Objects[1],new Vector2(6f, 3.28f), Quaternion.identity);
+	          Instantiate(Objects[0],new Vector2(Point2.position.x,Point2.position.y), Quaternion.identity);
             yield return new WaitForSeconds(1.5f);
 		}
 	}
-	IEnumerator Spawn3()//спаун черепах
+	IEnumerator Spawn2()//спаун черепах
     {
         while (!Player.lose)
         {
-			Instantiate(Objects[2],new Vector2(6f, 3.28f), Quaternion.identity);
+			Instantiate(Objects[1],new Vector2(Point2.position.x,Point2.position.y), Quaternion.identity);
             yield return new WaitForSeconds(5f);
         }
     }

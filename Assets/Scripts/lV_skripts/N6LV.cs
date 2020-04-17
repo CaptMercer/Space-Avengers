@@ -4,45 +4,45 @@ using UnityEngine;
 
 public class N6LV : MonoBehaviour
 {
- public GameObject[] Objects;
-	public bool BossFight=false;
-		public static bool win=false;
+		public GameObject[] Objects;
+		public static bool pirahs=false;
+		public Transform Point1,Point2;
     void Start()
     {
 		Player.LVNomber=6;
-        StartCoroutine(Spawn1());
-        StartCoroutine(Spawn2());
     }
 	    void Update()
     { 
-	if(Player.SCORE>200)
+	Player.gametime+=1*Time.deltaTime;
+		if( Player.gametime > 3f && pirahs==false)
 		{
-			BossFight=true;
+			pirahs=true;
+			StartCoroutine(Spawn1());
 		}
-			if(win==true)
+	if( Player.gametime > 50f && !Player.lose)
 		{
-		Player.matrix[4]=7;
-		Objects[3].SetActive(true);
+		Player.BossFight=true;
+		}
+			if(Player.win==true)
+		{
+			Player.win=true;
+			Objects[2].SetActive(true);
+			Objects[3].SetActive(true);
+			if(Player.campaign<=6)
+			{
+		PlayerPrefs.SetInt("campaign",7);
+		}
 		}
 	}
-    IEnumerator Spawn1()//спаун голды
+	 IEnumerator Spawn1()//спаун пираней
     {
-        while ( !Player.lose&&BossFight==false)
+        while (!Player.lose&&Player.BossFight==false)
         {
-            Instantiate(Objects[0],new Vector2(Random.Range(-6.1f, 6f), 5.9f), Quaternion.identity);
-            yield return new WaitForSeconds(0.8f);
-		}
-			if(BossFight==true)//босфайт
+		if(Player.BossFight==true)//босфайт
 		{
-		Objects[2].SetActive(true);
+		Objects[1].SetActive(true);
 		}
-		
-	}
-	 IEnumerator Spawn2()//спаун пираней
-    {
-        while (!Player.lose&&BossFight==false)
-        {
-           Instantiate(Objects[1],new Vector2(6f, 3.28f), Quaternion.identity);	
+           Instantiate(Objects[0],new Vector2(Point2.position.x,Point2.position.y), Quaternion.identity);
             yield return new WaitForSeconds(3f);
 		}	
 	}

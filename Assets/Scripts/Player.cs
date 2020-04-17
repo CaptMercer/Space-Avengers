@@ -6,40 +6,32 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
-    public static bool lose = false;
-	public static bool NewRecord = false;
-    public static int life ;
-	public static int LVNomber;
-	public static int shield_Hp = 0;
-	public static int shield ;
-	public static int damage = 0;
-	public static int HighScore;
-	public static int Gold;
+    public static bool lose = false,NewRecord = false,BossFight = false,win=false;
+	public  static int  HighScore,life,shield,LVNomber,Gold,S,campaign,shield_Hp = 0,damage = 0,SCORE = 0;
 	public GameObject[] Objects;
     public Sprite[] sprites = new Sprite[2];
     private AudioSource AudioDeath;
-	public static int score = 0;
-	public static int SCORE = 0;
-	public static int[] matrix = new int[5];
-	private Text Score;
-	private Text Gold_txt;
+	private Text Gold_txt,Score;
+	 public static float  gametime;
     void Awake()
     {
+		gametime=0;
 		Gold_txt = GameObject.Find("Gold").GetComponent<Text>();
 		Score = GameObject.Find("Score").GetComponent<Text>();
-		string[] lines = File.ReadAllLines("in.txt");
-		 for(int i =0;i<5;i++)
-		 {
-			 matrix[i]=Convert.ToInt32(lines[i]);
-		 }
 		damage = 0;
         lose = false;
-		shield =matrix[0];
-        life =matrix[1];
-		HighScore=matrix[2];
-		LVNomber=matrix[4];
+		win=false;
+		NewRecord = false;
+		BossFight = false;
+		Gold=PlayerPrefs.GetInt("gold");
+		shield=PlayerPrefs.GetInt("shield");
+		S=PlayerPrefs.GetInt("shield");
+        life =PlayerPrefs.GetInt("life");
+		print(life);
+		HighScore=PlayerPrefs.GetInt("records");
+		campaign=PlayerPrefs.GetInt("campaign");
         AudioDeath = GetComponent<AudioSource>();
-		if(matrix[0]==0)
+		if(shield==0)
 		{
 		GetComponent<SpriteRenderer>().sprite = sprites[0];
 		}
@@ -53,8 +45,8 @@ public class Player : MonoBehaviour
     {
 	       if (Other.gameObject.tag == "Gold")
             {
-				Gold++;
-				matrix[3]=matrix[3]+Gold;
+				Gold=PlayerPrefs.GetInt("gold")+1;
+				PlayerPrefs.SetInt("gold",Gold);
 				Gold=0;
 			}  
             if (Other.gameObject.tag == "Bomb")
@@ -65,30 +57,21 @@ public class Player : MonoBehaviour
 	    void  FixedUpdate()
     {
 		 //вывод сообщений
-	 Gold_txt.text ="Gold :" +matrix[3].ToString();
+	 Gold_txt.text ="Gold :" +PlayerPrefs.GetInt("gold").ToString();
 	 Score.text ="Score :" + SCORE.ToString(); 
 	  //сохранение в фаил 
-	  		string[] lines=new string[5];
-			 for(int i =0;i<5;i++)
-		 {
-		lines[i] = Convert.ToString(matrix[i]);
-		 }
-		 File.WriteAllLines("in.txt",lines);
-		score++;
-		SCORE=score/10;
 				if(SCORE>HighScore)
 		{
 			NewRecord=true;
 			HighScore=SCORE;
-			matrix[2]=HighScore;
-			//print("High Score"+Player.HighScore.ToString());
+			PlayerPrefs.SetInt("records",HighScore);
 		}
 		if(damage == 1 && shield > 0 )
 		{
 			shield=shield-damage;
 			damage=0;
 		}
-		if(shield == 0 && life >0 && matrix[0]>0 )
+		if(shield == 0 && life >0 && S>0 )
 		{
 		GetComponent<SpriteRenderer>().sprite = sprites[0];
 		shield_Hp ++;

@@ -8,14 +8,13 @@ public class Shield_Button : MonoBehaviour
 {
     void OnMouseDown()
 	{
-		print("?="+ReadFile_SHOP.shield_up_aible );
 		if(ReadFile_SHOP.shield_up_aible==true)	//проверка возможности обновить
     {
-		if (ReadFile_SHOP.shield_price<=ReadFile_SHOP.matrix[3])//проверка наличия золота
+		if (ReadFile_SHOP.shield_price<=ReadFile_SHOP.gold)//проверка наличия золота
 	{
-	ReadFile_SHOP.matrix[3]=ReadFile_SHOP.matrix[3]-ReadFile_SHOP.shield_price;
-	ReadFile_SHOP.matrix[0]=	ReadFile_SHOP.matrix[0]+1;
-	print("shield="+ ReadFile_SHOP.matrix[0]);//вывод в консоль 
+	ReadFile_SHOP.gold=ReadFile_SHOP.gold-ReadFile_SHOP.shield_price;
+	ReadFile_SHOP.shield=ReadFile_SHOP.shield+1;
+		PlayerPrefs.SetInt("shield",ReadFile_SHOP.shield);
 	}
 		else
 	{

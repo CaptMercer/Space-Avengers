@@ -7,33 +7,60 @@ using UnityEngine.UI;
 //скрипт на проверку существует ли сейф
 public class IS_File_Exist : MonoBehaviour
 {
-public static int[] matrix = new int[5];
-public static Boolean FileExistIN=true;
+	public int HIGHSCORE,life,shield,campaign,gold;
 	 void Awake()
     {
-		if (File.Exists("in.txt")==false)
-		{
-			File.Create("in.txt");//создание пустого сейва 
-			 matrix[0]=0;
-			 matrix[1]=1;
-			 matrix[2]=0;
-			 matrix[3]=0;
-			 matrix[4]=0;
-			print("File Dont Exist !!! ");
-			FileExistIN=false;
-		}
-	}
-	   void  Update()
-    {
-		if(FileExistIN==false)//запись в фаил пустого сейва 
-		{
-			 string[] lines=new string[5];
-			 for(int i =0;i<5;i++)
-		 {
-		lines[i] = Convert.ToString(matrix[i]);
-		 }
-		 File.WriteAllLines("in.txt",lines);
-		}
+			//рекорд
+			if(PlayerPrefs.HasKey("records"))
+			{
+			HIGHSCORE=PlayerPrefs.GetInt("records");
+			}
+					else
+			{
+				HIGHSCORE=0;
+				PlayerPrefs.SetInt("records",HIGHSCORE);
+			}
+			// хп
+					if(PlayerPrefs.HasKey("life"))
+			{
+			life=PlayerPrefs.GetInt("life");
+			}
+					else
+			{
+				life=1;
+				PlayerPrefs.SetInt("life",life);
+			}
+			//щит
+			if(PlayerPrefs.HasKey("shield"))
+			{
+			shield=PlayerPrefs.GetInt("shield");
+			}
+					else
+			{
+				shield=0;
+				PlayerPrefs.SetInt("shield",shield);
+			}
+			//прохождение
+						if(PlayerPrefs.HasKey("campaign"))
+			{
+			campaign=PlayerPrefs.GetInt("campaign");
+			}
+					else
+			{
+				campaign=0;
+				PlayerPrefs.SetInt("campaign",campaign);
+			}
+			//голда
+			if(PlayerPrefs.HasKey("gold"))
+			{
+			gold=PlayerPrefs.GetInt("gold");
+			}
+					else
+			{
+				gold=0;
+				PlayerPrefs.SetInt("gold",gold);
+			}
+		
 		}
 	}
 

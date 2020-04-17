@@ -5,20 +5,15 @@ using System;
 public class BLV0 : MonoBehaviour
 {
 public GameObject[] Objects;
-public static int[] matrix = new int[5];
+public static int campaign;
     void OnMouseDown()
     {
         SceneManager.LoadScene("0");
     }
 	 void Awake()
     {
-		// перевод из файла в масив
-		 string[] lines = File.ReadAllLines("in.txt");
-		 for(int i =0;i<5;i++)
-		 {
-			 matrix[i]=Convert.ToInt32(lines[i]);
-		 }
-		  switch ( matrix[4])
+		campaign=PlayerPrefs.GetInt("campaign");
+		  switch ( campaign)
       {
 			case 0:
 			Objects[0].SetActive(true);

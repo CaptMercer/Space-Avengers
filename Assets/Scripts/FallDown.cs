@@ -20,6 +20,7 @@ public class FallDown : MonoBehaviour
 		}
 		if (Other.gameObject.tag == "SHOOT")
 		{
+		Player.SCORE=Player.SCORE+10;
 		  Destroy(gameObject);
 		}
 	}

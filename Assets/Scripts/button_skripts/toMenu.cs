@@ -4,8 +4,9 @@ public class toMenu : MonoBehaviour
 {
     void OnMouseDown()
     {
-        SceneManager.LoadScene("menu");//выход в меню
 		Player.SCORE=0;
+		Player.Gold=0;
+        SceneManager.LoadScene("menu");//выход в меню
     }
 }
 

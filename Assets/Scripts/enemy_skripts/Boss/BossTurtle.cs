@@ -31,7 +31,7 @@ public class BossTurtle : MonoBehaviour
 	//ShootPoint=Objects[2];
 	break;
 		}
-	StartCoroutine(Plazma());
+	StartCoroutine(hello());
 	}
  void OnTriggerEnter2D (Collider2D Other)//механика получение урона на тригер
     {
@@ -40,9 +40,6 @@ public class BossTurtle : MonoBehaviour
 			if(step==0)
 			{
 					damage++;
-	//		if(shield == 0 && hp >0 && damage!=0)//проверкв на щит = 0
-	////	{
-	//	}
 		}
 		}
 	}
@@ -73,7 +70,7 @@ public class BossTurtle : MonoBehaviour
 			}
 		if( hp==0)//проверка на хп=0
 		{
-		 Destroy(gameObject);
+		StartCoroutine(Death());
 		}
 		
 			if(Criticaldamage!=3)//Движение в обычном режиме
@@ -111,6 +108,19 @@ public class BossTurtle : MonoBehaviour
 			Criticaldamage=0;
 			step=0;
 		}
+	}
+	IEnumerator hello()//спаун
+    {     
+	//1 анимация - анимация Awake за тем переход в idle анимацию 
+	yield return new WaitForSeconds(1f);
+	StartCoroutine(Plazma());
+	}
+		 IEnumerator Death()//смерть
+    {     
+	Player.SCORE=Player.SCORE+500;
+	Instantiate(Objects[2],new Vector2(Objects[0].transform.position.x, Objects[0].transform.position.y), Quaternion.identity);
+	yield return new WaitForSeconds(0.2f);
+	Destroy(gameObject);
 	}
 	  IEnumerator Plazma()//спаун выстрелов 
 	  {

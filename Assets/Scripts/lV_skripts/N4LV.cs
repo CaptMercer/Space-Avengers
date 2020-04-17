@@ -5,45 +5,46 @@ using UnityEngine;
 public class N4LV : MonoBehaviour
 {
 	public GameObject[] Objects;
-	public static bool win=false;
+	public Transform Point1,Point2;
+		public bool pirahs=false;
     void Start()
     {
 		Player.LVNomber=4;
         StartCoroutine(Spawn1());
-        StartCoroutine(Spawn2());
-        StartCoroutine(Spawn3());
 		
     }
 		    void Update()
     { 
-	if(Player.SCORE==50)
+	Player.gametime+=1*Time.deltaTime;
+		if(Player.gametime > 30f && pirahs==false)
 		{
-		win=true;
-		Player.matrix[4]=5;
-		Objects[3].SetActive(true);
+			pirahs=true;
+			StartCoroutine(Spawn2());
+		}
+	if(Player.gametime > 50f && !Player.lose)
+		{
+			 Player.win=true;
+			Objects[2].SetActive(true);
+			Objects[3].SetActive(true);
+			if(Player.campaign<=4)
+			{
+		PlayerPrefs.SetInt("campaign",5);
+		}
 		}
 	}
-	IEnumerator Spawn1()//спаун голды
+			IEnumerator Spawn1()//спаун метеоров
     {
-        while (!Player.lose&&win==false)
+		        while (!Player.lose&& Player.win==false)
         {
-            Instantiate(Objects[0],new Vector2(Random.Range(-6.1f, 6f), 5.9f), Quaternion.identity);
+	          Instantiate(Objects[0],new Vector2(Random.Range(Point1.position.x , Point2.position.x),Point1.position.y), Quaternion.identity);
             yield return new WaitForSeconds(0.8f);
-        }
-    }
-	    IEnumerator Spawn2()//спаун метеоров
+		}
+	}
+    IEnumerator Spawn2()//спаун пираней
     {
-        while (!Player.lose&&win==false)
+        while (!Player.lose&& Player.win==false)
         {
-            Instantiate(Objects[1],new Vector2(Random.Range(-6.1f, 6f), 5.9f), Quaternion.identity);
-            yield return new WaitForSeconds(0.8f);
-        }
-    }
-    IEnumerator Spawn3()//спаун пираней
-    {
-        while (!Player.lose&&win==false)
-        {
-			Instantiate(Objects[2],new Vector2(6f, 3.28f), Quaternion.identity);
+			Instantiate(Objects[1],new Vector2(Point2.position.x,Point2.position.y), Quaternion.identity);
             yield return new WaitForSeconds(5f);
         }
     }
