@@ -578,7 +578,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 171.04706, y: -45.92069}
+  m_AnchoredPosition: {x: 171.04706, y: -45.920685}
   m_SizeDelta: {x: 311.4, y: 53.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &614646867
@@ -1230,6 +1230,8 @@ MonoBehaviour:
   speed: 10
   Point1: {fileID: 1056287383}
   Point2: {fileID: 1176336985}
+  Point3: {fileID: 1193300315}
+  Point4: {fileID: 904332210}
 --- !u!65 &1433732935
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1389,7 +1391,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -196.27242, y: -52.505547}
+  m_AnchoredPosition: {x: -196.27242, y: -52.505554}
   m_SizeDelta: {x: 383.3, y: 66.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1697392206

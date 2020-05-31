@@ -22,7 +22,10 @@ public class N10LV : MonoBehaviour
 		}
 			if(Player.win==true)
 		{
+			if(Player.campaign<=6)
+			{
 		PlayerPrefs.SetInt("campaign",11);
+			}
 		Objects[4].SetActive(true);
 		Objects[5].SetActive(true);
 		}

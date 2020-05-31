@@ -9,7 +9,7 @@ public class piranha : MonoBehaviour
 		public Transform Point1,Point2;
 		public bool  death = false,boss,away=false;
 		public GameObject ShootPoint;
-		private Vector3 nextpos;
+		private Vector3 nextpos ,P;
 		public int Rand;
 		private float progress,roat ;
 		  void Awake()
@@ -45,11 +45,15 @@ public class piranha : MonoBehaviour
 		}
 		if(transform.position==Point1.position)//выбор точки движение  2 и точки сауна потронов 2
 		{
+			P= new Vector2(Point2.position.x,Point1.position.y-0.5f);
+			Point2.position=P;
 			nextpos=Point2.position;
 			ShootPoint=Objects[2];
 		}
 		if(transform.position==Point2.position)//выбор точки движение  1 и точки сауна потронов 1
 		{
+			P= new Vector2(Point1.position.x,Point2.position.y-0.5f);
+			Point1.position=P;
 			nextpos=Point1.position;
 			ShootPoint=Objects[0];
 		}

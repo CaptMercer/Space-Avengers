@@ -26,9 +26,9 @@ public class N5LV : MonoBehaviour
 			 Player.win=true;
 			Objects[2].SetActive(true);
 			Objects[3].SetActive(true);
-			if(Player.campaign<=2)
+			if(Player.campaign<=5)
 			{
-		PlayerPrefs.SetInt("campaign",3);
+		PlayerPrefs.SetInt("campaign",6);
 		}
 		}
 		}

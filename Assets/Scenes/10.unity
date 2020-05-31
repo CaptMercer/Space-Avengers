@@ -449,6 +449,8 @@ MonoBehaviour:
   speed: 10
   Point1: {fileID: 665581354}
   Point2: {fileID: 740856668}
+  Point3: {fileID: 1483605724}
+  Point4: {fileID: 445170847}
 --- !u!65 &396123772
 BoxCollider:
   m_ObjectHideFlags: 0

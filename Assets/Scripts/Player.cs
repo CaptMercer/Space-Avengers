@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
 		{
         while (!Player.lose)
         {
-			Instantiate(Objects[2],new Vector2(Objects[3].transform.position.x, -3.7f), Quaternion.identity);
+			Instantiate(Objects[2],new Vector2(Objects[3].transform.position.x,Objects[3].transform.position.y), Quaternion.identity);
             yield return new WaitForSeconds(0.8f);
         }
 		}

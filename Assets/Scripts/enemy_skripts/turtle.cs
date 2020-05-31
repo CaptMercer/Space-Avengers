@@ -9,7 +9,7 @@ public class turtle : MonoBehaviour
    		public float speed;
    		public bool  death = false,boss,away=false;
 		public Transform Point1,Point2;
-		private Vector3 nextpos;
+		private Vector3 nextpos,P;
 		private float progress,roat ;
 		public int hp ;
 		public int damage=0;
@@ -76,12 +76,16 @@ public class turtle : MonoBehaviour
 				StartCoroutine(Death());
 		}
 
-		if(transform.position==Point1.position )//выбор точки движение  2 
+if(transform.position==Point1.position)//выбор точки движение  2
 		{
+			P= new Vector2(Point2.position.x,Point1.position.y-0.5f);
+			Point2.position=P;
 			nextpos=Point2.position;
 		}
-				if(transform.position==Point2.position )//выбор точки движение1 
+		if(transform.position==Point2.position)//выбор точки движение  1
 		{
+			P= new Vector2(Point1.position.x,Point2.position.y-0.5f);
+			Point1.position=P;
 			nextpos=Point1.position;
 		}
 		if(away==false)

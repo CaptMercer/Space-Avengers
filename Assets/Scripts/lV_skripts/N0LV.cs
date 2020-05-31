@@ -18,7 +18,11 @@ public class N0LV : MonoBehaviour
 	if(Player.gametime > 50f && !Player.lose)
 		{
 			 Player.win=true;
-		PlayerPrefs.SetInt("campaign",1);
+			if(Player.campaign<=2)
+			{
+			PlayerPrefs.SetInt("campaign",1);
+			 }
+
 		Objects[2].SetActive(true);
 		Objects[3].SetActive(true);
 		}

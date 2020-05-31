@@ -333,7 +333,6 @@ MonoBehaviour:
   - {fileID: 6460820832962808183, guid: 435f58ec70c052a428e7813bd83e3363, type: 3}
   - {fileID: 1996797748}
   - {fileID: 1027908044}
-  win: 0
   Point1: {fileID: 1685812558}
   Point2: {fileID: 2141177618}
 --- !u!81 &519420030
@@ -795,6 +794,8 @@ MonoBehaviour:
   speed: 4
   Point1: {fileID: 593523586}
   Point2: {fileID: 286128971}
+  Point3: {fileID: 1685812558}
+  Point4: {fileID: 2141177618}
 --- !u!65 &1337902231
 BoxCollider:
   m_ObjectHideFlags: 0
