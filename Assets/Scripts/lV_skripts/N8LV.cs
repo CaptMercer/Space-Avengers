@@ -21,10 +21,9 @@ public class N8LV : MonoBehaviour
 		Player.win=true;
 		if(Player.campaign<=6)
 			{
-		PlayerPrefs.SetInt("campaign",8);
+		PlayerPrefs.SetInt("campaign",9);
 			}
-		Objects[3].SetActive(true);
-		Objects[4].SetActive(true);
+			Objects[3].SetActive(true);
 		}
 	}
 			IEnumerator Spawn1()//спаун пираней

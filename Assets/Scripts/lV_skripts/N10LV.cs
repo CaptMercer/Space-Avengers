@@ -27,7 +27,6 @@ public class N10LV : MonoBehaviour
 		PlayerPrefs.SetInt("campaign",11);
 			}
 		Objects[4].SetActive(true);
-		Objects[5].SetActive(true);
 		}
 			}
 			IEnumerator Spawn1()//спаун пираней

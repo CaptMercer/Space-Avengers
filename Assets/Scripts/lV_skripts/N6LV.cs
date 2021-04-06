@@ -26,9 +26,8 @@ public class N6LV : MonoBehaviour
 			if(Player.win==true)
 		{
 			Player.win=true;
-			Objects[2].SetActive(true);
 			Objects[3].SetActive(true);
-			if(Player.campaign<=6)
+			if (Player.campaign<=6)
 			{
 		PlayerPrefs.SetInt("campaign",7);
 		}

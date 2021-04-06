@@ -24,9 +24,8 @@ public class N5LV : MonoBehaviour
 	if(Player.gametime > 50f && !Player.lose)
 		{
 			 Player.win=true;
-			Objects[2].SetActive(true);
 			Objects[3].SetActive(true);
-			if(Player.campaign<=5)
+			if (Player.campaign<=5)
 			{
 		PlayerPrefs.SetInt("campaign",6);
 		}

@@ -92,8 +92,9 @@ public class Player : MonoBehaviour
                 {
                     GetComponent<SpriteRenderer>().sprite = sprites[1];
                     lose = true;
-                    Objects[0].SetActive(true);
-					Objects[1].SetActive(true);
+					Time.timeScale = 0f;
+					Objects[0].SetActive(true);
+                    Objects[1].SetActive(false);
                     AudioDeath.Play();
                 }
 	}

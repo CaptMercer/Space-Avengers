@@ -24,7 +24,6 @@ public class N0LV : MonoBehaviour
 			 }
 
 		Objects[2].SetActive(true);
-		Objects[3].SetActive(true);
 		}
 	}
 	    IEnumerator Spawn1()//спаун голды

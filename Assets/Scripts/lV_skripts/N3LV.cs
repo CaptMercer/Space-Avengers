@@ -28,8 +28,7 @@ public class N3LV : MonoBehaviour
 			if(Player.win==true)
 		{
 			Objects[3].SetActive(true);
-			Objects[4].SetActive(true);
-			if(Player.campaign<=3)
+			if (Player.campaign<=3)
 			{
 		PlayerPrefs.SetInt("campaign",4);
 		}

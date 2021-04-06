@@ -25,7 +25,6 @@ public class N1LV : MonoBehaviour
 		{
 			 Player.win=true;
 			Objects[2].SetActive(true);
-			Objects[3].SetActive(true);
 			if(Player.campaign<=1)
 			{
 		PlayerPrefs.SetInt("campaign",2);

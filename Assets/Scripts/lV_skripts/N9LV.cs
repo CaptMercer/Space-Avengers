@@ -23,8 +23,7 @@ public class N9LV : MonoBehaviour
 			{
 		PlayerPrefs.SetInt("campaign",10);
 			}
-		Objects[3].SetActive(true);
-		Objects[4].SetActive(true);
+			Objects[3].SetActive(true);
 		}
 	}
 
